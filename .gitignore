@@ -2,3 +2,4 @@
 /.gradle/
 /app/build/
 /build/
+app/google-services.json
