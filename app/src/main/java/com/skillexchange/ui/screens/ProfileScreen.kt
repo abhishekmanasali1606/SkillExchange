@@ -211,6 +211,61 @@ fun ProfileScreen(vm: AppViewModel, onLogout: () -> Unit, onHome: () -> Unit, on
                     }
                 }
             }
+            // AI Skill Suggestion Card
+            val aiSuggestion by vm.aiSuggestion.collectAsState()
+            val isLoadingAi by vm.isLoadingAi.collectAsState()
+
+            Card(
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = colors.secondaryContainer.copy(alpha = 0.5f)
+                )
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Default.AutoAwesome,
+                            contentDescription = null,
+                            tint = colors.secondary
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            "AI Skill Suggestion",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 15.sp
+                        )
+                    }
+                    Spacer(Modifier.height(10.dp))
+
+                    if (isLoadingAi) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(18.dp),
+                                strokeWidth = 2.dp,
+                                color = colors.secondary
+                            )
+                            Spacer(Modifier.width(10.dp))
+                            Text("Getting your personalized suggestion...", fontSize = 13.sp)
+                        }
+                    } else {
+                        Text(aiSuggestion, fontSize = 13.sp, lineHeight = 20.sp)
+                    }
+
+                    Spacer(Modifier.height(12.dp))
+
+                    Button(
+                        onClick = { vm.getAiSuggestion() },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(containerColor = colors.secondary),
+                        enabled = !isLoadingAi
+                    ) {
+                        Icon(Icons.Default.AutoAwesome, null, modifier = Modifier.size(16.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text(if (isLoadingAi) "Loading..." else "Get AI Suggestion")
+                    }
+                }
+            }
 
             Spacer(Modifier.height(24.dp))
             

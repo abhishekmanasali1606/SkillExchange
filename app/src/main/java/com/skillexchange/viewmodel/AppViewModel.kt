@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.concurrent.TimeUnit
+import com.skillexchange.data.remote.GeminiService
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -385,21 +386,19 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // ─── AI Suggestion ────────────────────────────────────────────────────────
-    fun getAiSuggestion(): String {
-        val map = mapOf(
-            "Plumber"     to "Learn basic Electrical wiring — many rural homes need combined plumbing + electrical fixes.",
-            "Electrician" to "Add Solar panel installation — high demand in rural areas.",
-            "Carpenter"   to "Learn Furniture restoration — upcycling is growing in villages.",
-            "Mason"       to "Learn Waterproofing techniques — very useful for monsoon season repairs.",
-            "Painter"     to "Try Wall texturing and design — premium skill that earns more points.",
-            "Welder"      to "Add Metal gate and railing work — constant demand in rural homes.",
-            "Mechanic"    to "Learn Water pump repair — huge need in farming communities.",
-            "Roofer"      to "Learn Thatching techniques — traditional but highly valued skill.",
-            "Farmer"      to "Learn Drip irrigation setup — saves water and increases yield.",
-            "Cook"        to "Learn Pickle and preserve making — great for bartering.",
-            "Tailor"      to "Learn Embroidery — adds value to your tailoring service."
-        )
-        return map[currentUser?.skillOffered ?: ""]
-            ?: "Consider specializing in one skill — focused expertise earns more trust."
+    private val _aiSuggestion = MutableStateFlow<String>("Tap to get your AI skill suggestion...")
+    val aiSuggestion: StateFlow<String> = _aiSuggestion
+
+    private val _isLoadingAi = MutableStateFlow(false)
+    val isLoadingAi: StateFlow<Boolean> = _isLoadingAi
+
+    fun getAiSuggestion() {
+        val skillOffered = currentUser?.skillOffered ?: "General"
+        val skillWanted = currentUser?.skillWanted ?: "Any"
+        viewModelScope.launch {
+            _isLoadingAi.value = true
+            _aiSuggestion.value = GeminiService.getSkillSuggestion(skillOffered, skillWanted)
+            _isLoadingAi.value = false
+        }
     }
 }
