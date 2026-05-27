@@ -15,9 +15,9 @@ A peer-to-peer skill-sharing Android application that connects people within loc
     <td align="center"><b>Reset Password</b></td>
   </tr>
   <tr>
-    <td><img src="screenshots/Registration.jpeg" width="220"/></td>
-    <td><img src="screenshots/Log_in.jpeg" width="220"/></td>
-    <td><img src="screenshots/Reset_Password.jpeg" width="220"/></td>
+    <td><img src="Registration.jpeg" width="220"/></td>
+    <td><img src="Log_in.jpeg" width="220"/></td>
+    <td><img src="Reset_Password.jpeg" width="220"/></td>
   </tr>
   <tr>
     <td align="center"><b>Home / Skill Board</b></td>
@@ -25,9 +25,9 @@ A peer-to-peer skill-sharing Android application that connects people within loc
     <td align="center"><b>My Swaps</b></td>
   </tr>
   <tr>
-    <td><img src="screenshots/Home.jpeg" width="220"/></td>
-    <td><img src="screenshots/Post.jpeg" width="220"/></td>
-    <td><img src="screenshots/Swap.jpeg" width="220"/></td>
+    <td><img src="Home.jpeg" width="220"/></td>
+    <td><img src="Post.jpeg" width="220"/></td>
+    <td><img src="Swap.jpeg" width="220"/></td>
   </tr>
 </table>
 
