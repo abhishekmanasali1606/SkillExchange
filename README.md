@@ -16,8 +16,8 @@ A peer-to-peer skill-sharing Android application that connects people within loc
   </tr>
   <tr>
     <td><img src="Registration.jpeg" width="220"/></td>
-    <td><img src="Log_in.jpeg" width="220"/></td>
-    <td><img src="Reset_Password.jpeg" width="220"/></td>
+    <td><img src="Log%20in.jpeg" width="220"/></td>
+    <td><img src="Reset%20Password.jpeg" width="220"/></td>
   </tr>
   <tr>
     <td align="center"><b>Home / Skill Board</b></td>
